@@ -66,12 +66,21 @@ public class PlayerShip : MonoBehaviour {
 		
 		transform.localRotation = Quaternion.Euler(new Vector3(rotX, rotY, rotZ));
 		if(moveInput.y > 0){
-			transform.localRotation = Quaternion.Euler(new Vector3(
-				rotX, rotY, rotZ + moveAnimationValue));
+			
+			if(player == 1)
+				transform.localRotation = Quaternion.Euler(new Vector3(
+					rotX, rotY, rotZ + moveAnimationValue));
+			else 
+				transform.localRotation = Quaternion.Euler(new Vector3(
+					rotX, rotY, rotZ - moveAnimationValue));
 		}
 		if(moveInput.y < 0){
-			transform.localRotation = Quaternion.Euler(new Vector3(
-				rotX, rotY, rotZ - moveAnimationValue));
+			if(player == 1)
+				transform.localRotation = Quaternion.Euler(new Vector3(
+					rotX, rotY, rotZ - moveAnimationValue));
+			else 
+				transform.localRotation = Quaternion.Euler(new Vector3(
+					rotX, rotY, rotZ + moveAnimationValue));
 		}
 		
 		
@@ -129,13 +138,19 @@ public class PlayerShip : MonoBehaviour {
 	}
 	
 	void killShip(){
+		
+		Debug.Log (transform.GetComponentInChildren<ParticleSystem>().name);
+		transform.GetComponentInChildren<ParticleSystem>().Stop();
+		transform.GetComponentInChildren<ParticleSystem>().Clear();
+		transform.GetComponentInChildren<ParticleSystem>().Play();
+		
 		if(player == 1){
 			GameManager.reg.player2Score++;
 		}
 		else {
 			GameManager.reg.player1Score++;
 		}
-		Destroy(this.gameObject);
+		//Destroy(this.gameObject);
 		GameManager.reg.StartCoroutine("respawnShip", player);
 	}
 

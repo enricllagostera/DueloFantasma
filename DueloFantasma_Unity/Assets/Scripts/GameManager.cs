@@ -110,11 +110,14 @@ public class GameManager : MonoBehaviour {
 	IEnumerator respawnShip(int player){
 		GameObject ship;
 		if(player == 1){
-			player1 = Instantiate(player1Prefab) as GameObject;
+			player1.transform.position = player1Prefab.transform.position;
+			player1.transform.rotation = player1Prefab.transform.rotation;
+			//player1 = Instantiate(player1Prefab) as GameObject;
 			ship = player1;
 		}
 		else{
-			player2 = Instantiate(player2Prefab) as GameObject;
+			player2.transform.position = player2Prefab.transform.position;
+			player2.transform.rotation = player2Prefab.transform.rotation;
 			ship = player2;
 		}
 		ship.transform.audio.Play();
