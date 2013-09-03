@@ -12,6 +12,13 @@ public class Title : MonoBehaviour {
 	void Start () {
 		renderer.material.color = color1;
 		timer = blinkInterval;
+		
+		Go.defaultLoopType = GoLoopType.PingPong;
+		
+		Go.to (transform, blinkInterval/2, new GoTweenConfig()
+			.scale(new Vector3(0.5f, 0.5f, 0f), true)
+			.setEaseType(GoEaseType.BackInOut)
+			.setIterations(-1));
 	}
 	
 	// Update is called once per frame

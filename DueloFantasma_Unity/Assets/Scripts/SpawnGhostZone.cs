@@ -33,7 +33,7 @@ public class SpawnGhostZone : MonoBehaviour {
 		Debug.Log("Spawn Ghost at " + this.gameObject.name);
 		
 		GameObject tempGhost = Instantiate(ghostPrefab, origin.transform.position, 
-			this.transform.rotation) as GameObject;
+			ghostPrefab.transform.rotation) as GameObject;
 		
 		tempGhost.transform.rigidbody.AddRelativeForce(Vector3.forward*ghostSpeed, 
 			ForceMode.VelocityChange);

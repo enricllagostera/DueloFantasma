@@ -10,6 +10,11 @@ public class PlayerShip : MonoBehaviour {
 	private string verticalAxis;
 	private string shootInput;
 	
+	public float moveAnimationTimer;
+	public float moveAnimationValue;
+	public float shootAnimationTimer;
+	public float shootAnimationValue;
+	
 	public float speed;
 	
 	public bool isShooting = false;
@@ -20,6 +25,10 @@ public class PlayerShip : MonoBehaviour {
 	private GameObject warpZoneTop;
 	private GameObject warpZoneBottom;
 	
+	private float rotX;
+	private float rotY;
+	private float rotZ;
+	
 	public float respawnTimer;
 	
 	public bool invincible = false;
@@ -29,6 +38,10 @@ public class PlayerShip : MonoBehaviour {
 		
 		warpZoneTop = GameObject.Find("WarpZoneTop");
 		warpZoneBottom = GameObject.Find("WarpZoneBottom");
+		
+		rotX = transform.localRotation.eulerAngles.x;
+		rotY = transform.localRotation.eulerAngles.y;
+		rotZ = transform.localRotation.eulerAngles.z;
 		
 	}
 	
@@ -50,6 +63,17 @@ public class PlayerShip : MonoBehaviour {
 		SetupControls();
 		moveInput = new Vector3(Input.GetAxis(horizontalAxis), 
 			Input.GetAxis(verticalAxis), 0);
+		
+		transform.localRotation = Quaternion.Euler(new Vector3(rotX, rotY, rotZ));
+		if(moveInput.y > 0){
+			transform.localRotation = Quaternion.Euler(new Vector3(
+				rotX, rotY, rotZ + moveAnimationValue));
+		}
+		if(moveInput.y < 0){
+			transform.localRotation = Quaternion.Euler(new Vector3(
+				rotX, rotY, rotZ - moveAnimationValue));
+		}
+		
 		
 		if(Input.GetButtonUp(shootInput)){
 			isShooting = true;
