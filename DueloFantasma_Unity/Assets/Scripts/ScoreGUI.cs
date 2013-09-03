@@ -19,8 +19,6 @@ public class ScoreGUI : MonoBehaviour {
 		else {
 			renderer.material = winner2;
 		}
-		
-		timer = fxInterval;
 	}
 	
 	// Update is called once per frame

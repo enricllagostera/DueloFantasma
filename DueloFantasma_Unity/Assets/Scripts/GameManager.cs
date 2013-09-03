@@ -87,14 +87,13 @@ public class GameManager : MonoBehaviour {
 				else {
 					winner = 2;
 				}
-				
-				
 				transform.audio.clip = SoundManager.reg.musResult;
 				transform.audio.Play();
 				level = Instantiate(levelPrefab)  as GameObject;
-				
 				scoreGUI = Instantiate(scoreGUIPrefab) as GameObject;
-				
+				Go.to (scoreGUI.transform, 0.43f/2, new GoTweenConfig()
+					.scale(new Vector3(1f, 1f, 0), true)
+					.setIterations(-1));
 				asteroidTimer = Mathf.Infinity;
 			}
 			
@@ -198,7 +197,7 @@ public class GameManager : MonoBehaviour {
 				ChangeState(1, true);
 			}
 		}
-		if(Input.GetKeyUp(KeyCode.Space)){
+		if(Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Escape)){
 			ChangeState(0, false);
 		}
 		if(Input.GetKeyUp(KeyCode.Escape)){
