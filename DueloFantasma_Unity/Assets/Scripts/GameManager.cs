@@ -197,7 +197,8 @@ public class GameManager : MonoBehaviour {
 				ChangeState(1, true);
 			}
 		}
-		if(Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Escape)){
+		if(Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Escape) || 
+			Input.GetButtonUp("start1")){
 			ChangeState(0, false);
 		}
 		if(Input.GetKeyUp(KeyCode.Escape)){
