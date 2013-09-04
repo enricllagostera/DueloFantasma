@@ -52,7 +52,7 @@ public class ScaleTweenProperty : AbstractVector3TweenProperty
 	
 	public override void tick( float totalElapsedTime )
 	{
-		var easedTime = _easeFunction( totalElapsedTime, 0, 1, _ownerTween.duration );
+		var easedTime = _easeFunction(totalElapsedTime, 0, 1, _ownerTween.duration );
 		_target.localScale = GoTweenUtils.unclampedVector3Lerp( _startValue, _diffValue, easedTime );
 	}
 

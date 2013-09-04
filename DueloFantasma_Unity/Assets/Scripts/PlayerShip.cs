@@ -99,6 +99,10 @@ public class PlayerShip : MonoBehaviour {
 		transform.rigidbody.AddForce(moveInput.normalized*speed, ForceMode.VelocityChange);
 		
 		if(isShooting){
+			Go.to(transform, shootAnimationTimer/2, new GoTweenConfig()
+				.scale(new Vector3(shootAnimationValue,shootAnimationValue,shootAnimationValue), 
+					false));
+			
 			isShooting = false;
 			GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, 
 				gunPoint.rotation) as GameObject;
@@ -106,6 +110,9 @@ public class PlayerShip : MonoBehaviour {
 			bullet.transform.rigidbody.AddRelativeForce(Vector3.forward * bulletPower, 
 				ForceMode.Impulse);
 			bullet.transform.rigidbody.AddTorque(0,100,100,ForceMode.Impulse);
+		}
+		else {
+			transform.localScale = new Vector3(0.65f,0.65f,0.65f);
 		}
 	}
 	
