@@ -126,8 +126,7 @@ public class GameManager : MonoBehaviour {
 			ship.GetComponent<PlayerShip>().invincible = false;
 	}
 	
-	IEnumerator endRound(){
-		yield return new WaitForSeconds(0.1f);
+	public void endRound(){
 		GameManager.reg.ChangeState((int)GameState.SCORE, false);
 	}
 	
