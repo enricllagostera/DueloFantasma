@@ -19,7 +19,7 @@ public class RoundTimer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer -= Time.deltaTime;
-		label.text = "Tempo\n" + timer.ToString("00") + "";
+		label.text = "Time\n" + timer.ToString("00") + "";
 		
 		if(timer <= 10 && !endOfRound && !countdown){
 			countdown = true;
