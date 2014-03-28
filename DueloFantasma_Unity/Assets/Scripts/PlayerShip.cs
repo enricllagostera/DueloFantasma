@@ -140,6 +140,10 @@ public class PlayerShip : MonoBehaviour {
 				warpZoneTop.transform.position.y - 3,
 				0);
 		}
+
+		if(col.gameObject.CompareTag("Asteroid")){
+			killShip();
+		}
 		
 		//GameObject.DestroyObject(this);
 	}

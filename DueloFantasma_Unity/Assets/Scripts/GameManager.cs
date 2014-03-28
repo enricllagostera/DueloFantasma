@@ -27,9 +27,13 @@ public class GameManager : MonoBehaviour {
 	public GameObject player1Prefab;
 	public GameObject player1;
 	public Color player1Color;
+	public Vector3 startPosP1;
+	public Vector3 startRotP1;
 	public GameObject player2Prefab;
 	public GameObject player2;
 	public Color player2Color;
+	public Vector3 startPosP2;
+	public Vector3 startRotP2;
 	public GameObject asteroidPrefab;
 	
 	public float asteroidSpeed = 10;
@@ -69,8 +73,12 @@ public class GameManager : MonoBehaviour {
 				transform.audio.clip = SoundManager.reg.musPlay;
 				transform.audio.Play();
 				level = Instantiate(levelPrefab)  as GameObject;
-				player1 = Instantiate(player1Prefab) as GameObject;
-				player2 = Instantiate(player2Prefab) as GameObject;
+				player1 = Instantiate(player1Prefab, 
+				                      startPosP1, 
+				                      Quaternion.Euler(startRotP1)) as GameObject;
+				player2 = Instantiate(player2Prefab, 
+				                      startPosP2, 
+				                      Quaternion.Euler(startRotP2)) as GameObject;
 				
 				ingameGUI = Instantiate(ingameGUIPrefab) as GameObject;
 				
@@ -109,14 +117,14 @@ public class GameManager : MonoBehaviour {
 	IEnumerator respawnShip(int player){
 		GameObject ship;
 		if(player == 1){
-			player1.transform.position = player1Prefab.transform.position;
-			player1.transform.rotation = player1Prefab.transform.rotation;
+			player1.transform.position = startPosP1;
+			player1.transform.rotation = Quaternion.Euler(startRotP1);
 			//player1 = Instantiate(player1Prefab) as GameObject;
 			ship = player1;
 		}
 		else{
-			player2.transform.position = player2Prefab.transform.position;
-			player2.transform.rotation = player2Prefab.transform.rotation;
+			player2.transform.position = startPosP2;
+			player2.transform.rotation = Quaternion.Euler(startRotP2);
 			ship = player2;
 		}
 		ship.transform.audio.Play();
