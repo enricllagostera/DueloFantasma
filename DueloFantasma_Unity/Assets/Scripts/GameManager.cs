@@ -51,10 +51,12 @@ public class GameManager : MonoBehaviour {
 		reg = this;
 		stateChanged = true;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+		transform.audio.volume = SoundManager.reg.masterVolume;
+
+
 		switch(state){
 		case GameState.TITLE :
 			if(stateChanged){
@@ -70,6 +72,7 @@ public class GameManager : MonoBehaviour {
 		case GameState.PLAY :
 			if(stateChanged) {
 				stateChanged = false;
+
 				transform.audio.clip = SoundManager.reg.musPlay;
 				transform.audio.Play();
 				level = Instantiate(levelPrefab)  as GameObject;

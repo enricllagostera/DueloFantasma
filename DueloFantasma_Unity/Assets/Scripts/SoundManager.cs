@@ -4,6 +4,8 @@ using System.Collections;
 public class SoundManager : MonoBehaviour {
 	
 	public static SoundManager reg;
+
+	public float masterVolume;
 	
 	public AudioClip musTheme;
 	public AudioClip musPlay;

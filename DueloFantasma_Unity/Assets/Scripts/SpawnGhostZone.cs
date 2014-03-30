@@ -3,12 +3,12 @@ using System.Collections;
 
 public class SpawnGhostZone : MonoBehaviour {
 	
-	public GameObject ghostPrefab;
+	public GhostShip ghostPrefab;
 	public float ghostSpeed;
 	
 	// Use this for initialization
 	void Start () {
-	
+		ObjectPool.CreatePool(ghostPrefab);
 	}
 	
 	// Update is called once per frame
@@ -32,12 +32,10 @@ public class SpawnGhostZone : MonoBehaviour {
 		
 		Debug.Log("Spawn Ghost at " + this.gameObject.name);
 		
-		GameObject tempGhost = Instantiate(ghostPrefab, origin.transform.position, 
-			ghostPrefab.transform.rotation) as GameObject;
+		GameObject tempGhost = ObjectPool.Spawn(ghostPrefab, origin.transform.position, 
+			ghostPrefab.transform.rotation).gameObject;
 		
 		tempGhost.transform.rigidbody.AddRelativeForce(Vector3.forward*ghostSpeed, 
 			ForceMode.VelocityChange);
-		
-		
 	}
 }

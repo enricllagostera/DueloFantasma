@@ -8,7 +8,7 @@ public class GhostShip : MonoBehaviour {
 	public float spawnTimer;
 	
 	public bool isShooting = false;
-	public GameObject bulletPrefab;
+	public Bullet bulletPrefab;
 	public Transform gunPoint;
 	public float bulletPower;
 	
@@ -18,6 +18,7 @@ public class GhostShip : MonoBehaviour {
 	void Start(){
 		invincible = true;
 		bulletTimer = bulletInterval/2;
+		ObjectPool.CreatePool<Bullet>(bulletPrefab);
 	}
 	
 	void Update(){
@@ -27,11 +28,11 @@ public class GhostShip : MonoBehaviour {
 			invincible = false;
 		if(invincible){
 			collider.enabled = false;
-			renderer.material.color = Color.yellow;
+			//renderer.material.color = Color.yellow;
 		}
 		else {
 			collider.enabled = true;
-			renderer.material.color = Color.white;
+			//renderer.material.color = Color.white;
 		}
 		
 		// shoot
@@ -44,7 +45,6 @@ public class GhostShip : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision col){
-		
 		if((player == 1 && col.gameObject.name == "SpawnZoneLeft") || 
 			(player == 2 && col.gameObject.name == "SpawnZoneRight")){
 			return;
@@ -56,8 +56,8 @@ public class GhostShip : MonoBehaviour {
 	void FixedUpdate(){
 		if(isShooting){
 			isShooting = false;
-			GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, 
-				gunPoint.rotation) as GameObject;
+			GameObject bullet = ObjectPool.Spawn(bulletPrefab, gunPoint.position, 
+				gunPoint.rotation).gameObject;
 			//bullet.transform.parent = this.transform;
 			bullet.transform.rigidbody.AddRelativeForce(Vector3.forward * bulletPower, 
 				ForceMode.Impulse);

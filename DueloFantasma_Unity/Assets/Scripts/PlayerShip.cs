@@ -18,7 +18,7 @@ public class PlayerShip : MonoBehaviour {
 	public float speed;
 	
 	public bool isShooting = false;
-	public GameObject bulletPrefab;
+	public Bullet bulletPrefab;
 	public Transform gunPoint;
 	public float bulletPower;
 	
@@ -42,7 +42,8 @@ public class PlayerShip : MonoBehaviour {
 		rotX = transform.localRotation.eulerAngles.x;
 		rotY = transform.localRotation.eulerAngles.y;
 		rotZ = transform.localRotation.eulerAngles.z;
-		
+
+		ObjectPool.CreatePool<Bullet>(bulletPrefab);
 	}
 	
 	void SetupControls(){
@@ -104,8 +105,8 @@ public class PlayerShip : MonoBehaviour {
 					false));
 			
 			isShooting = false;
-			GameObject bullet = Instantiate(bulletPrefab, gunPoint.position, 
-				gunPoint.rotation) as GameObject;
+			GameObject bullet = ObjectPool.Spawn(bulletPrefab, gunPoint.position, 
+				gunPoint.rotation).gameObject;
 			//bullet.transform.parent = this.transform;
 			bullet.transform.rigidbody.AddRelativeForce(Vector3.forward * bulletPower, 
 				ForceMode.Impulse);
