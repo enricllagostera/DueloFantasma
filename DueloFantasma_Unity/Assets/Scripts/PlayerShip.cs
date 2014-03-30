@@ -126,7 +126,7 @@ public class PlayerShip : MonoBehaviour {
 			col.gameObject.name != "WarpZoneBottom"){
 			//Debug.Log("Destroyed: " + this.name);
 			if(!invincible)
-				killShip();
+				KillShip();
 			
 		}
 		else if (col.gameObject == warpZoneTop){
@@ -142,14 +142,19 @@ public class PlayerShip : MonoBehaviour {
 				0);
 		}
 
+		/*
 		if(col.gameObject.CompareTag("Asteroid")){
-			killShip();
+			if(!invincible) killShip()
+			else {
+
+			};
 		}
+		*/
 		
 		//GameObject.DestroyObject(this);
 	}
-	
-	void killShip(){
+
+	public void KillShip(){
 		
 		Debug.Log (transform.GetComponentInChildren<ParticleSystem>().name);
 		transform.GetComponentInChildren<ParticleSystem>().Stop();

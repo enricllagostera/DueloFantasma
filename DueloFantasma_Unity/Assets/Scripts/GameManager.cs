@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
 	public int player2Score = 0;
 	public int winner = 0;
 	public float respawnTimer = 5;
-	public float roundTime = 60;
+	public float roundTime = 0;
 	
 	void Awake(){
 		reg = this;
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour {
 		case GameState.TITLE :
 			if(stateChanged){
 				stateChanged = false;
+				ObjectPool.Clear();
 				transform.audio.clip = SoundManager.reg.musTheme;
 				transform.audio.Play();
 				level = Instantiate(levelPrefab)  as GameObject;
