@@ -26,7 +26,6 @@ public class SpawnGhostZone : MonoBehaviour {
 	void SpawnGhost(GameObject origin){
 		
 		Vector3 tempPos = origin.transform.position;
-		//Quaternion tempRot = origin.transform.rotation;
 		
 		GameObject.Destroy(origin);
 		
