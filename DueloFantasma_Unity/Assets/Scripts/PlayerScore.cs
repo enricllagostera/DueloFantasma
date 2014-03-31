@@ -42,7 +42,13 @@ public class PlayerScore : MonoBehaviour {
 				//icons[i].renderer.enabled = !(i < GameManager.reg.player1Score);
 			}
 			else {
-				icons[icons.Count-1-i].renderer.enabled = !(i < GameManager.reg.player2Score);
+				if(i < GameManager.reg.player2Score){
+					Go.to(icons[icons.Count-1-i].transform, 0.5f, new GoTweenConfig()
+					      .scale(new Vector3(0.0f,0.0f,0.0f), 
+					       false)
+					      .setEaseType(GoEaseType.ElasticInOut));
+				}
+				//icons[icons.Count-1-i].renderer.enabled = !(i < GameManager.reg.player2Score);
 			}
 		}
 		CheckEndRound();
