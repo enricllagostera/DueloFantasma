@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		transform.audio.volume = SoundManager.reg.masterVolume;
 
-
 		switch(state){
 		case GameState.TITLE :
 			if(stateChanged){
@@ -92,6 +91,7 @@ public class GameManager : MonoBehaviour {
 			break;
 		case GameState.SCORE :
 			if(stateChanged) {
+
 				stateChanged = false;
 				if(player1Score > player2Score){
 					winner = 1;
@@ -111,10 +111,8 @@ public class GameManager : MonoBehaviour {
 			
 			break;
 		}
-		
-		
+
 		HandleInputs();
-		
 		UpdateAsteroids();
 	}
 		
@@ -193,7 +191,7 @@ public class GameManager : MonoBehaviour {
 		foreach (var bullet in allBullets){
 			Destroy(bullet.gameObject);
 		}
-		
+		ObjectPool.Clear();
 	}
 	
 	void ResetScore(){

@@ -30,7 +30,8 @@ public class RoundTimer : MonoBehaviour {
 				.setIterations(-1));
 			label.color = Color.green;	
 		}
-		
+
+		/*
 		if(timer <= 0 && !endOfRound) {
 			timer = 0;
 			if(GameManager.reg.player2Score != GameManager.reg.player1Score){
@@ -40,6 +41,7 @@ public class RoundTimer : MonoBehaviour {
 			label.text = "Extra\n" + timer.ToString("00") + "";
 			label.color = Color.yellow;
 		}
+		*/
 	}
 	
 	
